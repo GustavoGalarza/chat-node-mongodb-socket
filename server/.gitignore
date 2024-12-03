@@ -1,0 +1,24 @@
+# Ignorar el archivo .env (almacena claves sensibles)
+.env
+
+# Ignorar dependencias instaladas por npm/yarn/pnpm
+node_modules/
+
+# Archivos de logs
+logs/
+*.log
+
+# Archivos de compilación temporal
+dist/
+build/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración local de Git
+.git/
+
+# Otros temporales
+*.tmp
+*.swp
