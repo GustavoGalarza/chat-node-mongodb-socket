@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {genSalt, hash} from "bcrypt"
 
-const userSchema = new mongose.schema({
+const userSchema = new mongoose.Schema({
     email:{
         type: String,
         required: [true, "Email is Required"],
@@ -29,7 +29,12 @@ const userSchema = new mongose.schema({
     },
     profileSetup:{
         type: Boolean,
+        default: false,
         required: false,
+    },
+    premium: {
+        type: Boolean,
+        default: false, // El usuario es regular por defecto
     },
 })
 
