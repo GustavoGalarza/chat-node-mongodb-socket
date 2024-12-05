@@ -2,8 +2,8 @@
 
 const MessageContainer = () => {
     return (
-        <div>
-            MessageContainer
+        <div className="flex-1 overflow-y-auto scrollbar-hidden p-4 md:w-[65vw] lg:w-[70vw] xl:w-[80vw] w-full">
+            
         </div>
     );
 };
