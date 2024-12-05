@@ -65,7 +65,7 @@ export const login = async (request, response, next) => {
                 lastName: user.lastName,
                 image: user.image,
                 color: user.color,
-
+                premium:user.premium,
             },
         });
     } catch ({ error }) {

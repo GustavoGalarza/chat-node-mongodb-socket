@@ -1,16 +1,16 @@
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import  apiClient  from "@/lib/api-client";
+import apiClient from "@/lib/api-client";
 import { getColor } from "@/lib/utils";
 import { useAppStore } from "@/store";
 import { HOST, LOGOUT_ROUTE } from "@/utils/constants";
 import { FiEdit2 } from "react-icons/fi";
 import { IoLogOut, IoPowerSharp } from "react-icons/io5"
 import { useNavigate } from "react-router-dom";
-
+import { FaCrown } from "react-icons/fa";
 
 const ProfileInfo = () => {
-    const { userInfo,setUserInfo } = useAppStore();
+    const { userInfo, setUserInfo } = useAppStore();
     const navigate = useNavigate();
 
     const logOut = async () => {
@@ -31,7 +31,7 @@ const ProfileInfo = () => {
     }
 
     return (
-        <div className="absolute bottom-0 h-16 flex items-center justify-between px-10 w-full bg-[#192055]" >
+        <div className="absolute bottom-0 h-16 flex items-center justify-between px-2 w-full bg-[#192055]" >
             <div className="flex gap-3 items-center justify-center">
                 <div className="w-12 h-12 relative">
                     <Avatar className="h-12 w-12  rounded-full overflow-hidden" >
@@ -50,16 +50,16 @@ const ProfileInfo = () => {
                         )}
                     </Avatar>
                 </div>
-                <div>
+                <div >
                     {userInfo.firstName && userInfo.lastName ? `${userInfo.firstName} ${userInfo.lastName}`
                         : ""}
                 </div>
             </div>
-            <div className="flex gap-5">
+            <div className="flex gap-3">
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <FiEdit2 className="text-blue-800 text-xl font-medium"
+                            <FiEdit2 className="text-blue-800 text-lg font-medium"
                                 onClick={() => navigate('/profile')} />
                         </TooltipTrigger>
                         <TooltipContent className="bg-[#192055] border-none text-white" >
@@ -70,7 +70,18 @@ const ProfileInfo = () => {
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <IoPowerSharp className="text-yellow-500 text-xl font-medium"
+                            <FaCrown className="text-yellow-500 text-lg font-medium"
+                                onClick={() => navigate('/premium')} />
+                        </TooltipTrigger>
+                        <TooltipContent className="bg-[#192055] border-none text-white">
+                            Haste Premium!
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <IoPowerSharp className="text-red-500 text-lg font-medium"
                                 onClick={logOut} />
                         </TooltipTrigger>
                         <TooltipContent className="bg-[#192055] border-none text-white" >
@@ -78,6 +89,8 @@ const ProfileInfo = () => {
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
+
+
             </div>
         </div>
     );
