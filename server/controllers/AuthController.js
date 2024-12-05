@@ -138,8 +138,8 @@ export const addProfileImage = async (request, response, next) => {
         const updatedUser = await User.findByIdAndUpdate(request.userId, { image: fileName }, { new: true, runValidators: true })
 
         return response.status(200).json({
-           image: updatedUser.image,
-            
+            image: updatedUser.image,
+
         });
     } catch ({ error }) {
         console.log({ error });
@@ -151,23 +151,31 @@ export const addProfileImage = async (request, response, next) => {
 export const removeProfileImage = async (request, response, next) => {
     try {
         const { userId } = request;
-        const user =await User.findById(userId);
+        const user = await User.findById(userId);
 
-        if(!user){
+        if (!user) {
             return response.status(404).send("Usuario no encontrado-image");
-
         }
-        if(user.image){
+        if (user.image) {
             unlinkSync(user.image)
         }
-        user.image=null;
+        user.image = null;
         await user.save();
 
-
-        
         return response.status(200).send("Imagen del perfil removida");
     } catch ({ error }) {
         console.log({ error });
         return response.status(500).send("Internal Server Error Auhtcontroller getUserInfo");
     }
-};  
+};
+
+export const logout = async (request, response, next) => {
+    try {
+        response.cookie("jwt", "", { maxAge: 1, secure: true, sameSite: "None" });
+
+        return response.status(200).send("Logout exitoso.");
+    } catch ({ error }) {
+        console.log({ error });
+        return response.status(500).send("Internal Server Error Auhtcontroller getUserInfo");
+    }
+}; 

@@ -11,7 +11,7 @@ const ChatHeader = () => {
                     </button>
                 </div>
             </div>
-            ChatHeader
+            
         </div>
     );
 };
