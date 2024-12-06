@@ -89,6 +89,7 @@ export const getUserInfo = async (request, response, next) => {
             lastName: userData.lastName,
             image: userData.image,
             color: userData.color,
+            premium:userData.premium,
         });
     } catch ({ error }) {
         console.log({ error });

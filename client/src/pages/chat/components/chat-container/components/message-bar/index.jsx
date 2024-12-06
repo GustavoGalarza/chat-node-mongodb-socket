@@ -1,3 +1,5 @@
+import { useSocket } from "@/context/socketContext";
+import { useAppStore } from "@/store";
 import EmojiPicker from "emoji-picker-react";
 import { useEffect, useRef, useState } from "react";
 import { GrAttachment } from "react-icons/gr"
@@ -8,34 +10,46 @@ import { RiEmojiStickerLine } from "react-icons/ri";
 const messageBar = () => {
 
     const emojiRef = useRef();
-
+    const socket = useSocket();
+    const { selectedChatType, selectedChatData, userInfo } = useAppStore();
     const [message, setMessage] = useState("");
     const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
 
-    useEffect(()=>{
-        function handleClickOutside (event) {
+    useEffect(() => {
+        function handleClickOutside(event) {
             if (emojiRef.current && !emojiRef.current.contains(event.target)) {
                 setEmojiPickerOpen(false);
             }
         }
-        document.addEventListener("mousedown",handleClickOutside)
-        return ()=>{
-            removeEventListener("mousedown",handleClickOutside)
+        document.addEventListener("mousedown", handleClickOutside)
+        return () => {
+            removeEventListener("mousedown", handleClickOutside)
         }
-    },[emojiRef])
+    }, [emojiRef])
 
     const handleAddEmoji = (emoji) => {
         setMessage((msg) => msg + emoji.emoji)
     }
 
+    const handleSendMessage = async () => {
+        if (selectedChatType === "contact") {
+            socket.emit("sendMessage", {
+                sender: userInfo.id,
+                content: message,
+                recipient: selectedChatData._id,
+                messageType: "text",
+                fileUrl: undefined,
 
-    const handleSendMessage = async () => { }
+            })
+        }
+    }
 
     return (
         <div className="h-[10vh] bg-[#1c2041] flex justify-center items-center px-7 mb-9 gap-6" >
             <div className="flex-1 flex bg-[#38449b] rounded-md items-center gap-5 pr-5">
                 <input type="text" className="flex-1 p-5 bg-transparent rounded-md focus:border-none focus:outline-none" placeholder="Ingresa un mensaje" value={message} onChange={(e) => setMessage(e.target.value)} />
-                <button className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all" >
+                <button className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all"
+                >
                     <GrAttachment className="text-2xl" />
                 </button>
                 <div className="realtive" >
