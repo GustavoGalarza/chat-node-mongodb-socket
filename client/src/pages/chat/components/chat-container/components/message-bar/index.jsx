@@ -15,7 +15,7 @@ const messageBar = () => {
     const emojiRef = useRef();
     const fileInputRef = useRef();
     const socket = useSocket();
-    const { selectedChatType, selectedChatData, userInfo } = useAppStore();
+    const { selectedChatType, selectedChatData, userInfo, setIsUploading, setFileUploadProgess } = useAppStore();
     const [message, setMessage] = useState("");
     const [emojiPickerOpen, setEmojiPickerOpen] = useState(false);
 
@@ -58,9 +58,15 @@ const messageBar = () => {
             if (file) {
                 const formData = new FormData();
                 formData.append("file", file);
-                const response = await apiClient.post(UPLOAD_FILE_ROUTE, formData, { withCredentials: true });
+                setIsUploading(true);
+                const response = await apiClient.post(UPLOAD_FILE_ROUTE, formData, {
+                    withCredentials: true, onUploadProgress: data => {
+                        setFileUploadProgess(Math.round((100 * data.loaded) / data.total))
+                    }
+                });
 
                 if (response.status === 200 && response.data) {
+                    setIsUploading(false);
                     if (selectedChatType === "contact") {
                         socket.emit("sendMessage", {
                             sender: userInfo.id,
@@ -75,6 +81,7 @@ const messageBar = () => {
             console.log({ file });
 
         } catch (error) {
+            setIsUploading(false);
             console.log({ error });
 
         }
