@@ -23,7 +23,7 @@ const ContactsContainer = () => {
     }, [])
 
     return (
-        <div className="relative md:-[35vw] lg:w-[30vw] xl:w-[20vw] bg-[#111531] border-r-4 border-[#282853] w-full " >
+        <div className="relative md:-[35vw] lg:w-[30vw] xl:w-[25vw] bg-[#111531] border-r-4 border-[#282853] w-full " >
             <div className="p-3" >
                 <Logo />
             </div>
