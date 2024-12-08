@@ -40,7 +40,7 @@ const ContactList = ({ contacts, isChannel = false }) => {
                                         <div className={`
                                             ${selectedChatData &&
                                                 selectedChatData._id === contact._id
-                                                ? "bg-[#ffffff22] border-2 border-white/50  " 
+                                                ? "bg-[#ffffff22] border-2 border-white/50  "
                                                 : getColor(contact.color)
                                             }
                                         uppercase h-10 w-10  text-lg border-[1px] flex items-center justify-center rounded-full`}>
@@ -52,11 +52,16 @@ const ContactList = ({ contacts, isChannel = false }) => {
                                     )}
                                 </Avatar>
                             )}
-                        {
-                            isChannel && <div className="bg-[#ffffff22] h-10 w-10 flex items-center justify-center rounded-full" >#</div>}
-                        {
-                            isChannel ? <span>{contact.name}</span> : <span>{`${contact.firstName} ${contact.lastName}`}</span>
-                        }
+                        {isChannel && (
+                            <div className="bg-[#ffffff22] h-10 w-10 flex items-center justify-center rounded-full" >
+                                #
+                            </div>
+                        )}
+                        {isChannel ? (
+                            <span>{contact.name}</span>
+                        ) : (
+                            <span>{`${contact.firstName} ${contact.lastName}`}</span>
+                        )}
                     </div>
                 </div>
             ))}
