@@ -22,3 +22,6 @@ Thumbs.db
 # Otros temporales
 *.tmp
 *.swp
+
+uploads/files
+uploads/profiles
