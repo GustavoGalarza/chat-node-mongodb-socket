@@ -19,11 +19,11 @@ export const createChatSlice = (set, get) => ({
 
     setSelectedChatType: (selectedChatType) => set({ selectedChatType }),
     setSelectedChatData: (selectedChatData) => set({ selectedChatData }),
-    setSelectedChatMessage: (selectedChatMessages) => set({ selectedChatMessages }),
+    setSelectedChatMessages: (selectedChatMessages) => set({ selectedChatMessages }),
     setDirectMessageContacts: (directMessageContacts) => set({ directMessageContacts }),
     addChannel: (channel) => {
-       const channels= get().channels;
-       set({channels:[channel,...channels]});
+        const channels = get().channels;
+        set({ channels: [channel, ...channels] });
     },
 
 
@@ -43,4 +43,5 @@ export const createChatSlice = (set, get) => ({
             ],
         });
     },
+    
 });

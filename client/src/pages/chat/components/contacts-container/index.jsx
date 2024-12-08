@@ -32,7 +32,7 @@ const ContactsContainer = () => {
 
         getContacts();
         getChannels();
-    }, [setChannels, setDirectMessageContacts])
+    }, [setChannels, setDirectMessageContacts]);
 
     return (
         <div className="relative md:-[35vw] lg:w-[30vw] xl:w-[25vw] bg-[#111531] border-r-4 border-[#282853] w-full " >
@@ -64,38 +64,77 @@ const ContactsContainer = () => {
 
 export default ContactsContainer;
 
+// const Logo = () => {
+//     return (
+//         <div className="flex p-5  justify-start items-center gap-2">
+//             <svg
+//                 id="logo-38"
+//                 width="78"
+//                 height="32"
+//                 viewBox="0 0 78 32"
+//                 fill="none"
+//                 xmlns="http://www.w3.org/2000/svg"
+//             >
+//                 {" "}
+//                 <path
+//                     d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
+//                     className="ccustom"
+//                     fill="#2d2faa"
+//                 ></path>{" "}
+//                 <path
+//                     d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
+//                     className="ccompli1"
+//                     fill="#8383e9"
+//                 ></path>{" "}
+//                 <path
+//                     d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
+//                     className="ccompli2"
+//                     fill="#a9a9fc"
+//                 ></path>{" "}
+//             </svg>
+//             <span className="text-2xl font-semibold ">CHAT-APP</span>
+//         </div>
+//     );
+// };
 const Logo = () => {
     return (
-        <div className="flex p-5  justify-start items-center gap-2">
-            <svg
-                id="logo-38"
-                width="78"
-                height="32"
-                viewBox="0 0 78 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                {" "}
-                <path
-                    d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
-                    className="ccustom"
-                    fill="#2d2faa"
-                ></path>{" "}
-                <path
-                    d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
-                    className="ccompli1"
-                    fill="#8383e9"
-                ></path>{" "}
-                <path
-                    d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
-                    className="ccompli2"
-                    fill="#a9a9fc"
-                ></path>{" "}
-            </svg>
-            <span className="text-2xl font-semibold ">CHAT-APP</span>
+        <div className="flex p-5 justify-start items-center gap-4">
+            <div className="relative flex items-center">
+                {/* SVG Animado */}
+                <svg
+                    id="logo-pendulum"
+                    width="78"
+                    height="32"
+                    viewBox="0 0 78 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="relative"
+                >
+                    <path
+                        d="M55.5 0H77.5L58.5 32H36.5L55.5 0Z"
+                        className="origin-top animate-newton-pendulum-slow"
+                        fill="#4f46e5"
+                    ></path>
+                    <path
+                        d="M35.5 0H51.5L32.5 32H16.5L35.5 0Z"
+                        className="origin-top animate-newton-pendulum-medium"
+                        fill="#818cf8"
+                    ></path>
+                    <path
+                        d="M19.5 0H31.5L12.5 32H0.5L19.5 0Z"
+                        className="origin-top animate-newton-pendulum-fast"
+                        fill="#c7d2fe"
+                    ></path>
+                </svg>
+            </div>
+            {/* Texto con gradiente */}
+            <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse">
+                CHAT-APP
+            </span>
         </div>
     );
 };
+
 
 const Title = ({ text }) => {
     return (

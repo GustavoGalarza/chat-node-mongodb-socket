@@ -4,6 +4,7 @@ module.exports = {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+		
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -50,7 +51,26 @@ module.exports = {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		  keyframes: {
+			newtonPendulumSlow: {
+				'0%, 100%': { transform: 'rotate(-15deg)' },
+				'50%': { transform: 'rotate(15deg)' },
+			},
+			newtonPendulumMedium: {
+				'0%, 100%': { transform: 'rotate(-10deg)' },
+				'50%': { transform: 'rotate(10deg)' },
+			},
+			newtonPendulumFast: {
+				'0%, 100%': { transform: 'rotate(-5deg)' },
+				'50%': { transform: 'rotate(5deg)' },
+			},
+		},
+		animation: {
+			'newton-pendulum-slow': 'newtonPendulumSlow 2s ease-in-out infinite',
+			'newton-pendulum-medium': 'newtonPendulumMedium 1.5s ease-in-out infinite',
+			'newton-pendulum-fast': 'newtonPendulumFast 1s ease-in-out infinite',
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
