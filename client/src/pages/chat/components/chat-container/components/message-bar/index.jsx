@@ -1,3 +1,4 @@
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSocket } from "@/context/socketContext";
 import apiClient from "@/lib/api-client";
 import { useAppStore } from "@/store";
@@ -108,17 +109,47 @@ const messageBar = () => {
     return (
         <div className="h-[14vh] bg-[#1c2041] flex justify-center items-center px-5 gap-6" >
             <div className="flex-1 flex bg-[#38449b] rounded-md items-center gap-5 pr-5">
-                <input type="text" className="flex-1 p-5 bg-transparent rounded-md focus:border-none focus:outline-none" placeholder="Ingresa un mensaje" value={message} onChange={(e) => setMessage(e.target.value)} />
-                <button className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all" onClick={handleAttachmentClick}
-                >
-                    <GrAttachment className="text-2xl" />
-                </button>
+                <input type="text" className="flex-1 p-5 bg-transparent rounded-md focus:border-none focus:outline-none" placeholder="Ingresa un mensaje" value={message} onChange={(e) => setMessage(e.target.value)}
+                />
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <button
+                                className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all disabled:text-gray-400"
+                                onClick={handleAttachmentClick}
+                                disabled={!userInfo?.premium}
+                            >
+                                <GrAttachment className="text-2xl" />
+                            </button>
+                        </TooltipTrigger>
+                        {!userInfo?.premium && (
+                            <TooltipContent className="bg-[#192055] border-none text-white">
+                                Función exclusiva para usuarios Premium.
+                            </TooltipContent>
+                        )}
+                    </Tooltip>
+                </TooltipProvider>
                 <input type="file" className="hidden" ref={fileInputRef} onChange={handleAttachmentChange} />
+
                 <div className="realtive" >
-                    <button className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all"
-                        onClick={() => setEmojiPickerOpen(true)}>
-                        <RiEmojiStickerLine className="text-2xl" />
-                    </button>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    className="text-neutral-500 focus:border-none focus:outline-none focus:text-white duration-300 transition-all disabled:text-gray-400"
+                                    onClick={() => setEmojiPickerOpen(true)}
+                                    disabled={!userInfo?.premium}
+                                >
+                                    <RiEmojiStickerLine className="text-2xl" />
+                                </button>
+                            </TooltipTrigger>
+                            {!userInfo?.premium && (
+                                <TooltipContent className="bg-[#192055] border-none text-white">
+                                    Función exclusiva para usuarios Premium.
+                                </TooltipContent>
+                            )}
+                        </Tooltip>
+                    </TooltipProvider>
                     <div className="absolute bottom-16 right-0" ref={emojiRef} >
                         <EmojiPicker theme="dark" open={emojiPickerOpen} onEmojiClick={handleAddEmoji} autoFocusSearch={false} />
                     </div>

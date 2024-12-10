@@ -69,12 +69,19 @@ const ProfileInfo = () => {
                 </TooltipProvider>
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger>
-                            <FaCrown className="text-yellow-500 text-lg font-medium"
-                                onClick={() => navigate('/premium')} />
+                        <TooltipTrigger asChild>
+                            <button
+                                className={`text-yellow-500 text-lg font-medium ${userInfo?.premium ? 'cursor-not-allowed' : ''}`}
+                                onClick={() => {
+                                    if (!userInfo?.premium) navigate('/premium'); 
+                                }}
+                                disabled={userInfo?.premium}
+                            >
+                                <FaCrown />
+                            </button>
                         </TooltipTrigger>
                         <TooltipContent className="bg-[#192055] border-none text-white">
-                            Haste Premium!
+                            {userInfo?.premium ? "Ya eres Premium" : "Hazte Premium!"}
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
