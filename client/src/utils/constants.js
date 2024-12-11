@@ -8,6 +8,7 @@ export const UPDATE_PROFILE_ROUTE = `${AUTH_ROUTES}/update-profile`;
 export const ADD_PROFILE_IMAGE_ROUTE = `${AUTH_ROUTES}/add-profile-image`;
 export const REMOVE_PROFILE_IMAGE_ROUTE = `${AUTH_ROUTES}//remove-profile-image`
 export const LOGOUT_ROUTE = `${AUTH_ROUTES}/logout`;
+export const PREMIUM_ROUTE= `${AUTH_ROUTES}/newPremium`
 
 
 export const CONTACTS_ROUTES = "/api/contacts";
@@ -23,3 +24,7 @@ export const CHANNEL_ROUTES = "api/channel";
 export const CREATE_CHANNEL_ROUTE = `${CHANNEL_ROUTES}/create-channel`;
 export const GET_USER_CHANNELS_ROUTE = `${CHANNEL_ROUTES}/get-user-channels`;
 export const GET_CHANNEL_MESSAGES = `${CHANNEL_ROUTES}/get-channel-messages`;
+
+export const PAYPAL_ROUTES = "http://localhost:8747/api/orders";
+export const CREATE_ORDER_ROUTE = `http://localhost:8747${PAYPAL_ROUTES}`;
+export const CAPTURE_ORDER_ROUTE = `http://localhost:8747${PAYPAL_ROUTES}/:orderID/capture`;

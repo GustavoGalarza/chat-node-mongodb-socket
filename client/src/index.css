@@ -228,4 +228,25 @@
   font-weight: 900;
   font-style: italic;
 }
+.premium-container {
+  max-height: 1900px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 35px;
 
+}
+
+.premium-text h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.premium-text ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.premium-image img {
+  object-fit: cover;
+  height: auto;
+}

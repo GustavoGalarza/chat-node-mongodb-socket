@@ -80,7 +80,7 @@ const ProfileInfo = () => {
                                 <FaCrown />
                             </button>
                         </TooltipTrigger>
-                        <TooltipContent className="bg-[#192055] border-none text-white">
+                        <TooltipContent className="bg-[#fffb24] border-none text-black">
                             {userInfo?.premium ? "Ya eres Premium" : "Hazte Premium!"}
                         </TooltipContent>
                     </Tooltip>
@@ -91,7 +91,7 @@ const ProfileInfo = () => {
                             <IoPowerSharp className="text-red-500 text-lg font-medium"
                                 onClick={logOut} />
                         </TooltipTrigger>
-                        <TooltipContent className="bg-[#192055] border-none text-white" >
+                        <TooltipContent className="bg-[#ff2020] border-none text-white" >
                             Logout
                         </TooltipContent>
                     </Tooltip>

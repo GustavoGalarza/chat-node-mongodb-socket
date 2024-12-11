@@ -169,6 +169,28 @@ export const removeProfileImage = async (request, response, next) => {
         return response.status(500).send("Internal Server Error Auhtcontroller getUserInfo");
     }
 };
+export const updateUserPremiumStatus = async (request, response, next) => {
+    try {
+        const { userId } = request.body;  // El ID del usuario debe venir en el cuerpo de la solicitud
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return response.status(404).send("Usuario no encontrado");
+        }
+
+        // Actualizar el estado premium a true
+        user.premium = true;
+        await user.save();  // Guardamos los cambios en la base de datos
+
+        return response.status(200).json({
+            message: "El estado premium se ha actualizado con éxito.",
+            premium: user.premium,  // Retorna el estado premium actualizado
+        });
+    } catch (error) {
+        console.log(error);
+        return response.status(500).send("Error al actualizar el estado premium.");
+    }
+};
 
 export const logout = async (request, response, next) => {
     try {

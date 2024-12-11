@@ -7,6 +7,7 @@ import Profile from './pages/profile'
 import { useAppStore } from './store'
 import apiClient from './lib/api-client'
 import { GET_USER_INFO } from './utils/constants'
+import PremiumPage from './pages/premium/premiumPages'
 
 
 const PrivateRoute = ({ children }) => {
@@ -52,11 +53,11 @@ const App = () => {
   }, [userInfo, setUserInfo]);
   if (loading) {
     return <div className="flex items-center justify-center h-screen bg-gray-900">
-    <div className="text-center">
-      <div className="w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
-      <p className="mt-4 text-lg font-bold text-white">Cargando...</p>
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-blue-900 border-t-transparent rounded-full animate-spin mx-auto"></div>
+        <p className="mt-4 text-lg font-bold text-white">Cargando...</p>
+      </div>
     </div>
-  </div>
   }
 
 
@@ -72,6 +73,9 @@ const App = () => {
           </PrivateRoute>} />
           <Route path='/profile' element={<PrivateRoute>
             <Profile />
+          </PrivateRoute>} />
+          <Route path='/premium' element={<PrivateRoute>
+            <PremiumPage/>
           </PrivateRoute>} />
 
           <Route path='*' element={<Navigate to="/auth" />} />

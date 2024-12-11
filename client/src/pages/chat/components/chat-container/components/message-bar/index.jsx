@@ -123,7 +123,7 @@ const messageBar = () => {
                             </button>
                         </TooltipTrigger>
                         {!userInfo?.premium && (
-                            <TooltipContent className="bg-[#192055] border-none text-white">
+                            <TooltipContent className="bg-[#ff1e1e] border-none text-white">
                                 Función exclusiva para usuarios Premium.
                             </TooltipContent>
                         )}
@@ -144,7 +144,7 @@ const messageBar = () => {
                                 </button>
                             </TooltipTrigger>
                             {!userInfo?.premium && (
-                                <TooltipContent className="bg-[#192055] border-none text-white">
+                                <TooltipContent className="bg-[#ff1e1e] border-none text-white">
                                     Función exclusiva para usuarios Premium.
                                 </TooltipContent>
                             )}
